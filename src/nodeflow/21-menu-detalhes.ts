@@ -32,6 +32,10 @@ export default class MenuDetalhesNode extends AbstractNode {
                 title: "Playlist no Spotify",
                 description: "Topa colocar essa musica no spotify?",
             },
+            {
+                title: "Por enquanto é só",
+                description: "",
+            },
         );
         // Awaits for user input
         this.setNextInteractionNode(22);

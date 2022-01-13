@@ -35,7 +35,7 @@ async function getAuthorizationUrl(): Promise<string> {
 /*
  * Authenticate client in spotify and return Oauth2.0 token
  */
-async function getAuthFromSpotify(): Promise<string> {
+async function getOauthFromSpotify(): Promise<string> {
     try {
         const config = {
             baseURL: "https://accounts.spotify.com/api/token",
@@ -67,7 +67,7 @@ async function getAuthFromSpotify(): Promise<string> {
 async function createPlaylistInSpotify() {
     try {
         console.log(getAuthorizationUrl());
-        const acessToken = await getAuthFromSpotify();
+        const acessToken = await getOauthFromSpotify();
         console.log(acessToken);
 
         const config = {
