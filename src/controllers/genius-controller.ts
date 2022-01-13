@@ -1,23 +1,28 @@
-import axios from 'axios';
-import ApiError from '../errors/api-error';
+import axios from "axios";
+import ApiError from "../errors/api-error";
 
 async function searchGenius(query: string) {
     try {
         let config = {
             headers: {
                 Authorization: `Bearer ${process.env.GENIUS_TOKEN}`,
-                Accept: 'application/json'
+                Accept: "application/json",
             },
             params: {
-                q: query
-            }
-        }
+                q: query,
+            },
+        };
 
-        const response = (await axios.get("https://api.genius.com/search", config)).data;
+        const response = (
+            await axios.get("https://api.genius.com/search", config)
+        ).data;
 
         return response;
     } catch (error) {
-        throw new ApiError(error, "Error while retrieving search results from Genius");
+        throw new ApiError(
+            error,
+            "Error while retrieving search results from Genius",
+        );
     }
 }
 
@@ -26,17 +31,22 @@ export async function getGeniusPage(songTitle: string, artist: string) {
         let config = {
             headers: {
                 Authorization: `Bearer ${process.env.GENIUS_TOKEN}`,
-                Accept: 'application/json'
+                Accept: "application/json",
             },
             params: {
-                q: songTitle
-            }
-        }
+                q: songTitle,
+            },
+        };
 
-        const data = (await axios.get("https://api.genius.com/search", config)).data;
+        const data = (await axios.get("https://api.genius.com/search", config))
+            .data;
 
         for (const hit of data.response.hits) {
-            if (clearName(hit.result.artist_names).includes(artist.toLowerCase())) {
+            if (
+                clearName(hit.result.artist_names).includes(
+                    artist.toLowerCase(),
+                )
+            ) {
                 return hit.result.url;
             }
         }
@@ -47,11 +57,12 @@ export async function getGeniusPage(songTitle: string, artist: string) {
 }
 
 function clearName(name: string) {
-    return name.toLowerCase()
-        .replace(/ *\([^)]*\) */g, '')
-        .replace(/ *\[[^\]]*]/, '')
-        .replace(/feat.|ft./g, '')
-        .replace(/\s+/g, ' ')
+    return name
+        .toLowerCase()
+        .replace(/ *\([^)]*\) */g, "")
+        .replace(/ *\[[^\]]*]/, "")
+        .replace(/feat.|ft./g, "")
+        .replace(/\s+/g, " ")
         .trim();
 }
 
