@@ -17,7 +17,8 @@ export async function getUserInfo(userID: string) {
 }
 
 // Next time user interacts, they're gonna go to this node...
-export async function setUserCurrentNode(userID: string, nodeID: number) {
+export async function setUserCurrentNode(userID: string, nodeID: string) {
+
     try {
         await userSchema.updateOne({ userID },
             {

@@ -4,7 +4,7 @@ export interface UserModel {
 
     userID: String;
     lastInteraction: Date;
-    lastNode: Number;
+    lastNode: String;
     globals: AnyObject;
 
 }
@@ -13,7 +13,7 @@ const userSchema = new Schema(
     {
         userID: String,
         lastInteraction: { type: Date, default: Date.now() },
-        lastNode: { type: Number, default: 1 },
+        lastNode: { type: String, default: 1 },
         globals: Object,
     },
     {

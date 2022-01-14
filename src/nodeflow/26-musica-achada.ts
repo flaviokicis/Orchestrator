@@ -1,9 +1,9 @@
 import AbstractNode from "../core/cortex/abstract-node";
 import { UserInput } from "../core/cortex/input-types";
 
-export default class Hello extends AbstractNode {
-    public getID(): number {
-        return 26;
+export default class FoundSong extends AbstractNode {
+    public getID(): string {
+        return "node_j4H36Z8V6emP5PK";
     }
 
     public async run(input: UserInput, music): Promise<void> {

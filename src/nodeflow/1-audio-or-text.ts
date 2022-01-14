@@ -1,11 +1,9 @@
 import AbstractNode from "../core/cortex/abstract-node";
 import { UserInput } from "../core/cortex/input-types";
-import sendList from "../integrations/zenvia/list-content";
-import WhatsappList from "../types/whatsapp-list";
 
 export default class Hello extends AbstractNode {
-    public getID(): number {
-        return 1;
+    public getID(): string {
+        return "node_sqKjA6p0mZ4IyPI";
     }
 
     public async run(input: UserInput): Promise<void> {

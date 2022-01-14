@@ -2,9 +2,11 @@ import AbstractNode from "../core/cortex/abstract-node";
 import { UserInput } from "../core/cortex/input-types";
 import createPlaylistInSpotify from "../controllers/spotify-controller";
 
-export default class Hello extends AbstractNode {
-    public getID(): number {
-        return 27;
+
+export default class CriarPlaylist extends AbstractNode {
+  
+    public getID(): string {
+        return "node_46AhDs1bLRa0OZo";
     }
 
     public async run(input: UserInput, music): Promise<void> {
@@ -16,4 +18,6 @@ export default class Hello extends AbstractNode {
         // Go to options node
         this.runNode(21, input, music);
     }
+
 }
+

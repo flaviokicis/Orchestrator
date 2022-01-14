@@ -17,7 +17,7 @@ import WhatsappList from "../../types/whatsapp-list";
 type MessageCallback = (...contents: AbstractContent[]) => Promise<IMessage>;
 type ButtonsCallback = (buttons: WhatsappButtons) => Promise<void>;
 type ListCallback = (list: WhatsappList) => Promise<void>;
-type ChangeNodeCallback = (nodeID: number) => void;
+type ChangeNodeCallback = (nodeID: string) => void;
 type SetGlobalsCallback = (...pairs: Record<string, any>[]) => void;
 type GetGlobalsCallback = (...keys: string[]) => Promise<Object>;
 type emitEventCallback = (eventName: string, eventDetails: Object) => void;

@@ -2,8 +2,8 @@ import AbstractNode from "../core/cortex/abstract-node";
 import { UserInput } from "../core/cortex/input-types";
 
 export default class TestNode extends AbstractNode {
-    public getID(): number {
-        return 99;
+    public getID(): string {
+        return "node_testnode_F6rxmpp";
     }
 
     public async run(input: UserInput): Promise<void> {

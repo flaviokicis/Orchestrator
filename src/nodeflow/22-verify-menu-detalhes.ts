@@ -4,8 +4,8 @@ import { UserInput } from "../core/cortex/input-types";
 import { SongDetails } from "../types/song";
 
 export default class VerificarMenuDetalhes extends AbstractNode {
-    public getID(): number {
-        return 22;
+    public getID(): string {
+        return "node_nnvXte8nngKR53E";
     }
 
     public async run(input: UserInput, music): Promise<void> {
@@ -25,22 +25,29 @@ export default class VerificarMenuDetalhes extends AbstractNode {
                 );
             }
         } else if (input.getMessage() === "Ouvir um pedacinho") {
+          
             // Go to preview node
             this.runNode(24, input, music);
+
         } else if (input.getMessage() === "Tentar outra música") {
             this.sendTextMessage(
                 "Ok, vamos tentar novamente",
                 "Envie um áudio com a música que deseja descobrir",
             );
             this.setNextInteractionNode(1);
+
         } else if (input.getMessage() === "Playlist no Spotify") {
+
             this.runNode(27, input, music);
+
         } else if (input.getMessage() === "Por enquanto é só") {
+
             this.sendTextMessage(
                 "Muito obrigado!",
                 "Me pergunte sempre que precisar 😁",
             );
             this.setNextInteractionNode(1);
+
         } else {
             await this.sendTextMessage(
                 "Não entendi o que você quis dizer :/",

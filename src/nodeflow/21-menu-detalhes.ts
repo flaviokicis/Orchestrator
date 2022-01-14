@@ -2,8 +2,8 @@ import AbstractNode from "../core/cortex/abstract-node";
 import { UserInput } from "../core/cortex/input-types";
 
 export default class MenuDetalhesNode extends AbstractNode {
-    public getID(): number {
-        return 21;
+    public getID(): string {
+        return "node_MbeHWV8xThG0VjF";
     }
 
     public async run(input: UserInput): Promise<void> {

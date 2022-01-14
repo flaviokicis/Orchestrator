@@ -4,8 +4,8 @@ import { UserInput } from "../core/cortex/input-types";
 import scavengeLyrics from "../utils/lyrics-scavenger";
 
 export default class Hello extends AbstractNode {
-    public getID(): number {
-        return 23;
+    public getID(): string {
+        return "node_4y9oHctvpAC1MEp";
     }
 
     public async run(input: UserInput, music): Promise<void> {

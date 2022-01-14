@@ -5,8 +5,8 @@ import getAndEncode from "../utils/base64-download";
 import config from "../config";
 
 export default class ReconhecerMusica extends AbstractNode {
-    public getID(): number {
-        return 20;
+    public getID(): string {
+        return "node_Sqy0PN6ELGOrwEJ";
     }
 
     public async run(input: UserInput): Promise<void> {

@@ -1,3 +1,7 @@
+import AbstractNode from "../core/cortex/abstract-node";
+import nodeEngine from "../core/node-engine";
+import { isNumeric } from "./helper-functions";
+
 function loadAllNodes(): void {
     const allModules: { [key: string]: NodeRequire } = {};
     if (process.env.NODE_ENV == "dev") {
@@ -9,9 +13,6 @@ function loadAllNodes(): void {
                     allModules[name] = require("./../nodeflow/" + file);
                 }
             });
-        for (const module in allModules) {
-            new (allModules[module] as any).default();
-        }
     } else {
         require("fs")
             .readdirSync(__dirname + "/../nodeflow/")
@@ -23,6 +24,14 @@ function loadAllNodes(): void {
             });
         for (const module in allModules) {
             new (allModules[module] as any).default();
+        }
+    }
+
+    // Set Alias
+    for (const module in allModules) {
+        const node = new (allModules[module] as any).default() as AbstractNode;
+        if (module.split('-').length > 1 && isNumeric(module.split('-')[0])) {
+            nodeEngine.setAlias(Number(module.split("-")[0]), node.getID());
         }
     }
 }

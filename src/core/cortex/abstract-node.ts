@@ -9,15 +9,20 @@ import nodeEngine from "../node-engine";
 import NodeEngine from "../node-engine";
 import { CallbackBundle } from "./callback-bundle";
 import { UserInput } from "./input-types";
+import isNumeric from "../../utils/helper-functions";
+import getIDOrAlias from "../../utils/helper-functions";
 
 export default abstract class AbstractNode {
     private callbackBundle: CallbackBundle;
 
     public constructor() {
-        if (this.getID() > 0) NodeEngine.addNodeToRegistry(this.getID(), this);
+        if (this.getID()) NodeEngine.addNodeToRegistry(this.getID(), this);
     }
 
-    public abstract getID(): number;
+    /**
+     UUID of Node
+    */
+    public abstract getID(): string;
 
     /**
      * This function will execute the actual code inside the Node
@@ -29,9 +34,9 @@ export default abstract class AbstractNode {
      * This function will tell context manager which flow it should go to next
      * @param {number} id - ID to which the flow will jump next
      */
-    public async setNextInteractionNode(id: number): Promise<void> {
-        if (NodeEngine.isNodeSet(id))
-            this.callbackBundle.changeNodeCallback(id);
+    public async setNextInteractionNode(id: number | string): Promise<void> {
+        if (NodeEngine.isNodeSet(id as string))
+            this.callbackBundle.changeNodeCallback(id as string);
         else
             Logger.error(
                 "Node " +
@@ -42,8 +47,8 @@ export default abstract class AbstractNode {
             );
     }
 
-    public async runNode(nodeID: number, userInput: UserInput, extra?: any): Promise<void> {
-        let node: AbstractNode = nodeEngine.getNodeFromRegistry(nodeID);
+    public async runNode(nodeID: string | number, userInput: UserInput, extra?: any): Promise<void> {
+        let node: AbstractNode = nodeEngine.getNodeFromRegistry(getIDOrAlias(nodeID));
 
         node.setCallbackBundle(this.callbackBundle); // Sets context
 

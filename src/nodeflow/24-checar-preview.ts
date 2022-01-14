@@ -2,8 +2,8 @@ import AbstractNode from "../core/cortex/abstract-node";
 import { UserInput } from "../core/cortex/input-types";
 
 export default class ChecarPreview extends AbstractNode {
-    public getID(): number {
-        return 24;
+    public getID(): string {
+        return "node_LxmFllSS-omQ4VP";
     }
 
     public async run(input: UserInput, music): Promise<void> {

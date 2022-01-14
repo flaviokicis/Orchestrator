@@ -13,8 +13,8 @@ async function getAuthorizationUrl(): Promise<string> {
             if (obj.hasOwnProperty(key)) {
                 str.push(
                     encodeURIComponent(key) +
-                        "=" +
-                        encodeURIComponent(obj[key]),
+                    "=" +
+                    encodeURIComponent(obj[key]),
                 );
             }
         return str.join("&");
@@ -91,9 +91,7 @@ async function createPlaylistInSpotify() {
             .then((response) => response);
         return response;
     } catch (error) {
-        console.log(error.response.data.error);
-        throw new ApiError(error, "Error while creating playlist from Spotify");
-    }
+        console.log(error);
 }
 
 export default createPlaylistInSpotify;

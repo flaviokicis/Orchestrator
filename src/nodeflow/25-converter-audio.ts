@@ -7,8 +7,8 @@ import Logger from "../utils/default-logger";
 import makeListFromGenius from "../utils/genius-helper";
 
 export default class Hello extends AbstractNode {
-    public getID(): number {
-        return 25;
+    public getID(): string {
+        return "node_nBiuBF3oCVNTFH3";
     }
 
     public async run(input: UserInput, audioEncoded): Promise<void> {
@@ -23,7 +23,7 @@ export default class Hello extends AbstractNode {
             if (config.DEBUG)
                 Logger.info(
                     "Google Cloud understood this: " +
-                        transcriptResult.join(" "),
+                    transcriptResult.join(" "),
                 );
 
             const geniusSearch = (

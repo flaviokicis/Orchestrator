@@ -20,6 +20,7 @@ import ApiError from "../errors/api-error";
 import config from "../config";
 import WhatsappList from "../types/whatsapp-list";
 import sendList from "../integrations/zenvia/list-content";
+import getIDOrAlias from "../utils/helper-functions";
 
 class ContextManager {
     // Get data from mongo and execute node using NodeEngine
@@ -36,16 +37,16 @@ class ContextManager {
         const lastInteraction: Date = info.lastInteraction;
 
         // Gets which node to go to
-        let currentNode: number = info.lastNode as number;
+        let currentNode: string = info.lastNode as string;
 
         // If it's been more than 15 seconds, restart interaction
         if (moment.now() - lastInteraction.getTime() > 1000 * 60 * config.RESET_TIME) {
             // Resets
-            currentNode = 1;
+            currentNode = getIDOrAlias(1);
         }
 
         // In case the node has been deleted, resets flow.
-        if (!nodeEngine.isNodeSet(currentNode)) currentNode = 1;
+        if (!nodeEngine.isNodeSet(currentNode)) currentNode = getIDOrAlias(1);
 
         let node: AbstractNode = nodeEngine.getNodeFromRegistry(currentNode);
 
@@ -110,7 +111,7 @@ class ContextManager {
         };
 
         // Change Node Callback
-        const changeNodeCallback = (nodeID: number) => {
+        const changeNodeCallback = (nodeID: string) => {
             // Sets next node to specified ID
             setUserCurrentNode(userInput.getUserID(), nodeID);
         };
@@ -156,7 +157,7 @@ class ContextManager {
                 return ["Desculpa, não estou conseguindo fazer essa ação 😞", "Vamos tentar a última vez..."];
             }
             await setGlobals(userInput.getUserID(), { "apiErrorCount": 0 })
-            await setUserCurrentNode(userInput.getUserID(), 1);
+            await setUserCurrentNode(userInput.getUserID(), getIDOrAlias(1));
             return ["Parece que estou passando por problemas no momento 🤕", "Tente novamente um pouco mais tarde"];
         } else {
             await setGlobals(userInput.getUserID(), { "apiErrorCount": 1 })

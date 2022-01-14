@@ -7,8 +7,8 @@ import greetings from '../utils/dictionary/greetings';
 import makeListFromGenius from "../utils/genius-helper";
 
 export default class Greetings extends AbstractNode {
-    public getID(): number {
-        return 30;
+    public getID(): string {
+        return "node_bNIGEIT8GnfElUK";
     }
 
     public async run(input: UserInput): Promise<void> {
