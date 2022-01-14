@@ -8,6 +8,8 @@ import loadAllNodes from "./utils/node-loader";
 import { connect } from "./database/mongo-connector";
 import userSchema from "./database/models/user-model";
 
+import createPlaylistInSpotify from "./controllers/spotify-controller";
+
 class App {
     public async start() {
         // Retrieves all nodes from directory "nodeflow" and instantiates them
