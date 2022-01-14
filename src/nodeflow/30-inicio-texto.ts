@@ -32,7 +32,9 @@ export default class Greetings extends AbstractNode {
 
     public isGreeting(message: string): boolean {
         for (const greet of greetings) {
-            return greet.toLowerCase() === message.toLowerCase();
+            if (greet.toLowerCase() === message.toLowerCase().replace('!', '')) {
+                return true;
+            }
         }
         return false;
     }

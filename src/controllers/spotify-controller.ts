@@ -92,8 +92,6 @@ async function createPlaylistInSpotify() {
         return response;
     } catch (error) {
         console.log(error);
-        throw new ApiError(error, "Error while creating playlist from Spotify");
-    }
 }
 
 export default createPlaylistInSpotify;

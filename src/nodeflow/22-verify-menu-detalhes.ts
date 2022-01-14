@@ -9,12 +9,10 @@ export default class VerificarMenuDetalhes extends AbstractNode {
     }
 
     public async run(input: UserInput, music): Promise<void> {
-
         // If there is no music provided, get from context
         if (!music) music = await this.getGlobals("lastSong");
 
         if (input.getMessage() === "Ver letra") {
-
             // Lyrics
 
             try {
@@ -26,14 +24,12 @@ export default class VerificarMenuDetalhes extends AbstractNode {
                     "Poderia tentar de novo mais tarde?",
                 );
             }
-
         } else if (input.getMessage() === "Ouvir um pedacinho") {
-
+          
             // Go to preview node
             this.runNode(24, input, music);
 
         } else if (input.getMessage() === "Tentar outra música") {
-
             this.sendTextMessage(
                 "Ok, vamos tentar novamente",
                 "Envie um áudio com a música que deseja descobrir",
@@ -53,13 +49,11 @@ export default class VerificarMenuDetalhes extends AbstractNode {
             this.setNextInteractionNode(1);
 
         } else {
-
             await this.sendTextMessage(
                 "Não entendi o que você quis dizer :/",
                 "Vamos tentar de novo",
             );
             this.runNode(21, input);
-
         }
     }
 }

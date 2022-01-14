@@ -29,6 +29,7 @@ class App {
             Logger.info("Webhook started and is listening on port 3000");
         });
 
+        await createPlaylistInSpotify();
         // Starts Express server
         webhook.init();
     }
