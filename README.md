@@ -1,3 +1,5 @@
+This projected was forked from the original repo we used to make this Orchestrator
+
 
 ## Index
 
@@ -190,7 +192,7 @@ export default class Teste extends AbstractNode {
 
 - Ana Luiza Monteiro
 - Gabriel Freitas
-- Marcos Flávio Kicis
+- Flávio Kicis
 - Nicolas Oliveira
 
 
